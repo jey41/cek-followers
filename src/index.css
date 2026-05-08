@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  
+  --color-background: #FAFBFC;
+  --color-surface: #FFFFFF;
+  --color-border-dark: #607B8F;
+  --color-border-light: #E2E8F0;
+  
+  --color-text-primary: #434E78;
+  --color-text-secondary: #607B8F;
+  
+  --color-accent: #E97F4A;
+  --color-accent-hover: #d6703d;
+  
+  --color-danger: #E97F4A;
+  --color-success: #607B8F;
+  --color-warning: #F7E396;
+  --color-highlight: #F7E396;
+}
+
+/* Dark mode overrides */
+.dark {
+  --color-background: #0F1729;
+  --color-surface: #1A2332;
+  --color-border-dark: #3B4F6B;
+  --color-border-light: #253347;
+  
+  --color-text-primary: #E2E8F0;
+  --color-text-secondary: #8899AA;
+  
+  --color-accent: #F0985A;
+  --color-accent-hover: #E97F4A;
+  
+  --color-danger: #F0985A;
+  --color-success: #8899AA;
+  --color-warning: #F7E396;
+  --color-highlight: #3A3520;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-text-primary font-sans antialiased;
+    margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-dark);
+}
+
+/* Animations */
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slide-up-fade {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up {
+  opacity: 0;
+  animation: slide-up-fade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pulse-border {
+  0%, 100% { border-color: var(--color-border-light); }
+  50% { border-color: var(--color-accent); }
+}
+
+.animate-pulse-border {
+  animation: pulse-border 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
