@@ -1,4 +1,3 @@
-import { Heart } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getTranslation } from '../utils/translations';
 
@@ -12,9 +11,7 @@ const Footer = () => {
           © {new Date().getFullYear()} {t('footer.copyright')}
         </p>
         <div className="flex items-center gap-4 text-sm text-text-secondary">
-          <span className="flex items-center gap-1">
-            {t('footer.madeBy')} <Heart className="w-4 h-4 text-danger fill-danger" /> {t('footer.by')}
-          </span>
+          <span>{t('footer.madeBy')}</span>
         </div>
       </div>
     </footer>

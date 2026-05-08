@@ -90,8 +90,7 @@ const translations = {
     // Footer
     footer: {
       copyright: 'IG Unfollow Checker. All processing happens in your browser.',
-      madeBy: 'Made with',
-      by: 'by AvirositE'
+      madeBy: 'Made by aivorasite'
     }
   },
 
@@ -186,8 +185,7 @@ const translations = {
     // Footer
     footer: {
       copyright: 'IG Unfollow Checker. Semua pemrosesan terjadi di browsermu.',
-      madeBy: 'Dibuat dengan',
-      by: 'oleh aivorasite'
+      madeBy: 'Dibuat oleh aivorasite'
     }
   }
 };
