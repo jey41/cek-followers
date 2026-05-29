@@ -74,11 +74,19 @@ const UserList = ({ users, type, onToggleHide, onToggleUnfollow }) => {
         {filteredAndSortedUsers.map((user, index) => (
           <div 
             key={user.username} 
-            className="bg-surface border border-border-light shadow-sm rounded-2xl p-4 flex items-center justify-between hover:border-accent/50 hover:shadow-md transition-all duration-300 animate-slide-up"
+            className={`bg-surface border shadow-sm rounded-2xl p-4 flex items-center justify-between hover:shadow-md transition-all duration-300 animate-slide-up ${
+              type === 'unfollowers'
+                ? 'border-border-light border-l-4 border-l-danger hover:border-danger/30'
+                : 'border-border-light hover:border-accent/50'
+            }`}
             style={{ animationDelay: `${Math.min(index * 20, 400)}ms` }}
           >
             <div className="flex items-center gap-3 overflow-hidden">
-              <div className="w-11 h-11 rounded-full bg-border-light/50 shrink-0 flex items-center justify-center text-text-primary font-bold text-lg">
+              <div className={`w-11 h-11 rounded-full shrink-0 flex items-center justify-center font-bold text-lg ${
+                type === 'unfollowers'
+                  ? 'bg-danger/10 text-danger'
+                  : 'bg-border-light/50 text-text-primary'
+              }`}>
                 {user.username.charAt(0).toUpperCase()}
               </div>
               <div className="min-w-0">

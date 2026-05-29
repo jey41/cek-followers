@@ -13,8 +13,26 @@ import { getTranslation } from './utils/translations';
 function App() {
   const { language } = useLanguage();
   const t = (key) => getTranslation(language, key);
-  const [data, setData] = useState(null);
-  const [rawFollowingJson, setRawFollowingJson] = useState(null);
+  const [rawFollowingJson, setRawFollowingJson] = useState(() => {
+    try {
+      const saved = localStorage.getItem('ig_raw_following_json');
+      return saved ? JSON.parse(saved) : null;
+    } catch (e) {
+      console.error("Error parsing saved raw following data:", e);
+      return null;
+    }
+  });
+
+  const [data, setData] = useState(() => {
+    try {
+      const saved = localStorage.getItem('ig_computed_data');
+      return saved ? JSON.parse(saved) : null;
+    } catch (e) {
+      console.error("Error parsing saved computed data:", e);
+      return null;
+    }
+  });
+
   const [activeTab, setActiveTab] = useState('unfollowers'); // 'unfollowers', 'mutual', 'fans', 'deactivated', 'unfollowed'
   
   const [unfollowedUsers, setUnfollowedUsers] = useState(() => {
@@ -55,12 +73,14 @@ function App() {
   const handleDataProcessed = (followersRaw, followingRaw) => {
     try {
       setRawFollowingJson(followingRaw);
+      localStorage.setItem('ig_raw_following_json', JSON.stringify(followingRaw));
+
       const followersMap = parseFollowers(followersRaw);
       const followingMap = parseFollowing(followingRaw);
       
       const { unfollowers, mutual, fans } = computeRelationships(followersMap, followingMap);
       
-      setData({
+      const computedData = {
         stats: {
           followers: followersMap.size,
           following: followingMap.size,
@@ -72,7 +92,10 @@ function App() {
           mutual,
           fans
         }
-      });
+      };
+
+      setData(computedData);
+      localStorage.setItem('ig_computed_data', JSON.stringify(computedData));
     } catch (error) {
       console.error(error);
       alert("Error processing data: " + error.message);
@@ -83,6 +106,12 @@ function App() {
     setData(null);
     setRawFollowingJson(null);
     setActiveTab('unfollowers');
+    localStorage.removeItem('ig_raw_following_json');
+    localStorage.removeItem('ig_computed_data');
+    localStorage.removeItem('ig_unfollowed_users');
+    localStorage.removeItem('ig_hidden_users');
+    setUnfollowedUsers([]);
+    setHiddenUsers([]);
   };
 
   const downloadUpdatedFollowingJson = () => {

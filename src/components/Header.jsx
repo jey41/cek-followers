@@ -1,4 +1,4 @@
-import { Users } from 'lucide-react';
+import brandLogo from '../assets/logo_apeiron.png';
 import ThemeToggle from './ThemeToggle';
 import LanguageToggle from './LanguageToggle';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -12,13 +12,11 @@ const Header = () => {
     <header className="border-b border-border-light bg-surface/80 backdrop-blur-md sticky top-0 z-50 transition-colors duration-300">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#F7E396] to-[#E97F4A] flex items-center justify-center p-[2px] shadow-sm">
-            <div className="w-full h-full bg-surface rounded-full flex items-center justify-center">
-              <Users className="w-5 h-5 text-text-primary" />
-            </div>
+          <div className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center shadow-sm border border-border-light">
+            <img src={brandLogo} alt="APEIRON Logo" className="w-full h-full object-cover" />
           </div>
           <div>
-            <h1 className="font-bold text-lg text-text-primary leading-tight">Unfollow Checker</h1>
+            <h1 className="font-bold text-lg text-text-primary leading-tight">{t('UnfollowChecker')}</h1>
           </div>
         </div>
         <div className="flex items-center gap-3">

@@ -2,7 +2,7 @@ const translations = {
   en: {
     // Header
     header: {
-      title: 'Unfollow Checker',
+      title: 'APEIRON',
       subtitle: 'for Instagram',
       privacy: '100% Client-Side Private'
     },
@@ -89,7 +89,7 @@ const translations = {
 
     // Footer
     footer: {
-      copyright: 'IG Unfollow Checker. All processing happens in your browser.',
+      copyright: 'APEIRON. All processing happens in your browser.',
       madeBy: 'Made by aivorasite'
     }
   },
@@ -97,7 +97,7 @@ const translations = {
   id: {
     // Header
     header: {
-      title: 'Unfollow Checker',
+      title: 'APEIRON',
       subtitle: 'untuk Instagram',
       privacy: '100% Client-Side Private'
     },
@@ -184,7 +184,7 @@ const translations = {
 
     // Footer
     footer: {
-      copyright: 'IG Unfollow Checker. Semua pemrosesan terjadi di browsermu.',
+      copyright: 'APEIRON. Semua pemrosesan terjadi di browsermu.',
       madeBy: 'Dibuat oleh aivorasite'
     }
   }
